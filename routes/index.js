@@ -3,7 +3,7 @@
  * GET home page.
  */
 app = require('../app');
-var neoReq = require('superagent');
+var neo4j = require('neo4j');
 var db = process.env.GRAPHENEDB_URL
 
 app.get('/', function(req, res){
