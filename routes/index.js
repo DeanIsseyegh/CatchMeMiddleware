@@ -4,7 +4,6 @@
  */
 app = require('../app');
 var neo4j = require('superagent');
-var db = new neo4j.GraphDatabase(process.env.GRAPHENEDB_URL);
 
 app.get('/', function(req, res){
 	res.send('homeUpdated!');
@@ -14,7 +13,14 @@ app.post("/", function(req, res){
 	console.log('POST /');
 	console.dir(req.body);
 
+	neo4j.post(process.env.GRAPHENEDB_URL + '/cypher').send({
+		query: 'CREATE (n {name:"World"}) RETURN "hello", n.name'
+	}).end(funcition(neo4jRes){
+		res.send(neo4jRes.text);
+	})
+
 	});
+
 
 	//neoReq.post(process.env.GRAPHENEDB_URL + '/cypher').send({
 	//	query: 'CREATE (n {name:"World"}) RETURN "hello", n.name'
