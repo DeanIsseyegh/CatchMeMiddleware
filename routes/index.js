@@ -2,9 +2,8 @@
 /*
  * GET home page.
  */
-
 app = require('../app');
-var neoReq = require('superagent');
+var neoReq = require('neo4j');
 
 app.get('/', function(req, res){
 	res.send('homeUpdated!');
