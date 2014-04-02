@@ -16,10 +16,10 @@ app.post("/", function(req, res){
 	consosle.log(process.env.NEO4J_REST_URL);
 	neoReq.post(process.env.NEO4J_REST_URL + '/cypher').send({
 		query: 'CREATE (n {name:"World"}) RETURN "hello", n.name'
-	}).end(function(neo4jRes)) {
+	}).end(function(neo4jRes) {
 		res.send(neo4jRes.text);
-	}
+	});
 
 	res.writeHead(200, {'Content-type': 'application/json'});
 	//res.end("thanks");
-})
+});
