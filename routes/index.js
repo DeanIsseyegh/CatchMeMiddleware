@@ -14,12 +14,7 @@ app.post("/", function(req, res){
 	console.log('POST /');
 	console.dir(req.body);
 
-	db.insertNode(
-	{
-		name: 'Darth Vader',
-		sex:  'male'
-	}}
-	));
+	);
 
 	//neoReq.post(process.env.GRAPHENEDB_URL + '/cypher').send({
 	//	query: 'CREATE (n {name:"World"}) RETURN "hello", n.name'
