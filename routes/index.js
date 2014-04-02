@@ -3,7 +3,7 @@
  * GET home page.
  */
 app = require('../app');
-var neoReq = require('neo4j');
+var neoReq = require('node-neo4j');
 
 app.get('/', function(req, res){
 	res.send('homeUpdated!');

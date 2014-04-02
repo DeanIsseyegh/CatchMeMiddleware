@@ -9,6 +9,7 @@
     "express": "3.5.1",
     "hjs": "*",
     "less-middleware": "~0.1.15",
-    "neo4j": "~2.0.1"
+    "superagent": "0.16.0",
+    "step": "0.0.5"
   }
 }
