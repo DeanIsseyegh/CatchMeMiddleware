@@ -3,8 +3,8 @@
  * GET home page.
  */
 app = require('../app');
-var neo4j = require('neo4j');
-var db = process.env.GRAPHENEDB_URL
+var neo4j = require('superagent');
+var db = new neo4j.GraphDatabase(process.env.GRAPHENEDB_URL);
 
 app.get('/', function(req, res){
 	res.send('homeUpdated!');
