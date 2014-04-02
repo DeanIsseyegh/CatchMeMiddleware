@@ -21,8 +21,6 @@ app.post("/", function(req, res){
 		if(err) throw err;
 		console.log(node.data);
 		console.log(node.id);
-	}).end(function(neo4jRes) {
-		res.send(neo4jRes.text);
 	});
 
 	//neoReq.post(process.env.GRAPHENEDB_URL + '/cypher').send({
