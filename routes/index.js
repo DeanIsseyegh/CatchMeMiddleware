@@ -15,7 +15,7 @@ app.post("/", function(req, res){
 
 	neo4j.post(process.env.GRAPHENEDB_URL + '/cypher').send({
 		query: 'CREATE (n {name:"World"}) RETURN "hello", n.name'
-	}).end(funcition(neo4jRes){
+	}).end(function(neo4jRes){
 		res.send(neo4jRes.text);
 	})
 
