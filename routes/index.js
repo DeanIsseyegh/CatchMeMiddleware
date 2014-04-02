@@ -19,6 +19,6 @@ app.post("/", function(req, res){
 		res.send(neo4jRes.text);
 	});
 
-	res.writeHead(200, {'Content-type': 'application/json'});
+	//res.writeHead(200, {'Content-type': 'application/json'});
 	//res.end("thanks");
 });
