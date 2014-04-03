@@ -16,6 +16,7 @@ app.post("/", function(req, res){
 	
 	console.log('About to parse json');
 	console.dir(req.body);
+	console.log(typeof(req.body));
 	console.log('About to send back in response');
 	res.send(req.body);
 
@@ -23,8 +24,8 @@ app.post("/", function(req, res){
 
     	db.collection('catchmerequests', function(err, collection) {
 
-    		collection.insert(req.body, {w:1}, function(err,result) {
-    			collection.update({Username:'Deano'}, {$set:{longitude:1}}, function(err, result) {});
+    		//collection.update(req.body, {w:1}, function(err,result) {
+
     		});
   		});
 	});
