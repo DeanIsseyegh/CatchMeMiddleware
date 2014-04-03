@@ -24,10 +24,10 @@ app.post("/", function(req, res){
 	mongo.Db.connect(mongoUri, function (err, db) {
 
     	db.collection('catchmerequests', function(err, collection) {
-    		console.log(username);
-    		//collection.update(req.body, {w:1}, function(err,result) {
 
-    		//});
+    		collection.update({username : {$exists : true}}, {$set: jsonObj}, {w:1}, function(err,result) {
+
+    		});
   		});
 	});
 
