@@ -23,9 +23,9 @@ app.post("/", function(req, res){
 
 	mongo.Db.connect(mongoUri, function (err, db) {
 		if (err)
-			res.send("Failed");
+			res.send(null);
 		else
-			res.send("WELL DONE");
+			res.send(null);
     	db.collection('catchmerequests', function(err, collection) {
 
     		collection.update({'Username':username}, {$set: jsonObj}, {upsert:true}, function(err,result) {
