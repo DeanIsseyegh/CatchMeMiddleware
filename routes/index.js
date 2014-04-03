@@ -24,12 +24,15 @@ app.post("/", function(req, res){
 	mongo.Db.connect(mongoUri, function (err, db) {
 		if (err)
 			res.send(null);
-		else
-			res.send(null);
+		
     	db.collection('catchmerequests', function(err, collection) {
-
+    		if (err)
+    			res.send(null);
     		collection.update({'Username':username}, {$set: jsonObj}, {upsert:true}, function(err,result) {
-
+    			if (err)
+    				res.send(null);
+    			else
+    				res.send(jsonObj);
     		});
   		});
 	});
