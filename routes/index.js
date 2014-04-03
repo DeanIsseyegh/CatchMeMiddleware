@@ -14,11 +14,11 @@ app.post("/", function(req, res){
 	//console.log('POST /');
 	//console.dir(req.body);
 	
-	console.log('About to parse json');
+	//console.log('About to parse json');
 	//console.dir(req.body);
-	var parsedBody = JSON.parse(req.body);
-	console.log(typeof(parsedBody));
 	//console.log('About to send back in response');
+	var obj = JSON.stringify(req.body);
+	console.log(obj);
 	res.send(req.body);
 
 	mongo.Db.connect(mongoUri, function (err, db) {
