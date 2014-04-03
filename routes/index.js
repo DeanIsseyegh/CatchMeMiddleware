@@ -25,7 +25,7 @@ app.post("/", function(req, res){
 
     	db.collection('catchmerequests', function(err, collection) {
 
-    		collection.update({username : {$exists : true}}, {$set: jsonObj}, {w:1}, function(err,result) {
+    		collection.update({username : {$exists : true}}, {$set: jsonObj}, {upsert:true}, {w:1}, function(err,result) {
 
     		});
   		});
