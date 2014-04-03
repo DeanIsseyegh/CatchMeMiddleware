@@ -19,10 +19,13 @@ app.post("/", function(req, res){
 	//console.log('About to send back in response');
 	var jsonObj = req.body; 
 	var username = jsonObj['Username'];
-	res.send(req.body);
+	//res.send(req.body);
 
 	mongo.Db.connect(mongoUri, function (err, db) {
-
+		if (err)
+			res.send("Failed");
+		else
+			res.send("WELL DONE");
     	db.collection('catchmerequests', function(err, collection) {
 
     		collection.update({'Username':username}, {$set: jsonObj}, {upsert:true}, function(err,result) {
