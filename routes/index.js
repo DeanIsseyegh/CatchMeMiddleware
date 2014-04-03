@@ -17,16 +17,14 @@ app.post("/", function(req, res){
 	//console.log('About to parse json');
 	//console.dir(req.body);
 	//console.log('About to send back in response');
-	var jsonObj = req.body;
-	var obj = JSON.stringify(req.body);
-	console.log(obj);
-	console.log(jsonObj['Username']);
+	var jsonObj = req.body; 
+	var username = jsonObj['Username'];
 	res.send(req.body);
 
 	mongo.Db.connect(mongoUri, function (err, db) {
 
     	db.collection('catchmerequests', function(err, collection) {
-
+    		console.log(username);
     		//collection.update(req.body, {w:1}, function(err,result) {
 
     		//});
