@@ -14,7 +14,7 @@ app.post("/", function(req, res){
 	//console.log('POST /');
 	//console.dir(req.body);
 	
-	var jsonObject = JSON.parse(data);
+	var jsonObject = JSON.parse(req.body);
 	console.log('About to parse json');
 	console.log(jsonObject);
 
