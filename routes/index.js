@@ -11,23 +11,19 @@ app.get('/', function(req, res){
 })
 
 app.post("/", function(req, res){
-	console.log('POST /');
-	console.dir(req.body);
-	console.log(process.env.GRAPHENEDB_URL);
+	//console.log('POST /');
+	//console.dir(req.body);
 	
-	mongo.Db.connect(mongoUri, function (err, db) {
-  db.collection('mydocs', function(er, collection) {
-    collection.insert({'mykey': 'myvalue'}, {safe: true}, function(er,rs) {
-    });
-  });
-});
+	var jsonObject = JSON.parse(data);
+	console.log('About to parse json');
+	console.log(jsonObject);
 
+	mongo.Db.connect(mongoUri, function (err, db) {
+    	db.collection('mydocs', function(er, collection) {
+    		collection.insert({'mykey': 'myvalue'}, {safe: true}, function(er,rs) {
+
+    		});
+  		});
 	});
 
-
-mongo.Db.connect(mongoUri, function (err, db) {
-  db.collection('mydocs', function(er, collection) {
-    collection.insert({'mykey': 'myvalue'}, {safe: true}, function(er,rs) {
-    });
-  });
 });
