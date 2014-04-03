@@ -3,7 +3,8 @@
  * GET home page.
  */
 app = require('../app');
-var neo4j = require('superagent');
+var mongo = require('mongodb');
+var mongoUri = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL
 
 app.get('/', function(req, res){
 	res.send('homeUpdated!');
@@ -12,22 +13,21 @@ app.get('/', function(req, res){
 app.post("/", function(req, res){
 	console.log('POST /');
 	console.dir(req.body);
-
-	neo4j.post(process.env.GRAPHENEDB_URL + '/cypher').send({
-		query: 'CREATE (n {name:"World"}) RETURN "hello", n.name'
-	}).end(function(neo4jRes){
-		res.send(neo4jRes.text);
-	})
+	console.log(process.env.GRAPHENEDB_URL);
+	
+	mongo.Db.connect(mongoUri, function (err, db) {
+  db.collection('mydocs', function(er, collection) {
+    collection.insert({'mykey': 'myvalue'}, {safe: true}, function(er,rs) {
+    });
+  });
+});
 
 	});
 
 
-	//neoReq.post(process.env.GRAPHENEDB_URL + '/cypher').send({
-	//	query: 'CREATE (n {name:"World"}) RETURN "hello", n.name'
-	//}).end(function(neo4jRes) {
-	//	res.send(neo4jRes.text);
-	//});
-
-	//res.writeHead(200, {'Content-type': 'application/json'});
-	//res.end("thanks");
-//});
+mongo.Db.connect(mongoUri, function (err, db) {
+  db.collection('mydocs', function(er, collection) {
+    collection.insert({'mykey': 'myvalue'}, {safe: true}, function(er,rs) {
+    });
+  });
+});
