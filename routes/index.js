@@ -17,8 +17,10 @@ app.post("/", function(req, res){
 	//console.log('About to parse json');
 	//console.dir(req.body);
 	//console.log('About to send back in response');
+	var jsonObj = req.body;
 	var obj = JSON.stringify(req.body);
 	console.log(obj);
+	console.log(jsonObj['Username']);
 	res.send(req.body);
 
 	mongo.Db.connect(mongoUri, function (err, db) {
