@@ -26,7 +26,7 @@ app.post("/", function(req, res){
 
     		//collection.update(req.body, {w:1}, function(err,result) {
 
-    		});
+    		//});
   		});
 	});
 
