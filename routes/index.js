@@ -15,10 +15,10 @@ app.post("/", function(req, res){
 	//console.dir(req.body);
 	
 	console.log('About to parse json');
-	console.dir(req.body);
-	parsedBody = JSON.parse(req.body);
+	//console.dir(req.body);
+	var parsedBody = JSON.parse(req.body);
 	console.log(typeof(parsedBody));
-	console.log('About to send back in response');
+	//console.log('About to send back in response');
 	res.send(req.body);
 
 	mongo.Db.connect(mongoUri, function (err, db) {
