@@ -20,8 +20,10 @@ app.post("/", function(req, res){
 	res.send(req.body);
 
 	mongo.Db.connect(mongoUri, function (err, db) {
-    	db.collection('mydocs', function(er, collection) {
-    		//collection.insert({'mykey': 'myvalue'}, {safe: true}, function(er,rs) {
+
+		db.collection
+    	db.collection('catchmerequests', function(er, collection) {
+
     		collection.insert(req.body, {safe: true}, function(er,rs) {
 
     		});
