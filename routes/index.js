@@ -21,11 +21,10 @@ app.post("/", function(req, res){
 
 	mongo.Db.connect(mongoUri, function (err, db) {
 
-		db.collection
-    	db.collection('catchmerequests', function(er, collection) {
+    	db.collection('catchmerequests', function(err, collection) {
 
-    		collection.insert(req.body, {safe: true}, function(er,rs) {
-
+    		collection.insert(req.body, {w:1}, function(err,result) {
+    			collection.update({Username:'Deano'}, {$set:(longitude:1)}, function(err, result) {});
     		});
   		});
 	});
