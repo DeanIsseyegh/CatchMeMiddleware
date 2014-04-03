@@ -16,7 +16,8 @@ app.post("/", function(req, res){
 	
 	console.log('About to parse json');
 	console.dir(req.body);
-	console.log(typeof(req.body));
+	parsedBody = JSON.parse(req.body);
+	console.log(typeof(parsedBody));
 	console.log('About to send back in response');
 	res.send(req.body);
 
