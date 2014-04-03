@@ -24,7 +24,7 @@ app.post("/", function(req, res){
     	db.collection('catchmerequests', function(err, collection) {
 
     		collection.insert(req.body, {w:1}, function(err,result) {
-    			collection.update({Username:'Deano'}, {$set:(longitude:1)}, function(err, result) {});
+    			collection.update({Username:'Deano'}, {$set:{longitude:1}, function(err, result) {});
     		});
   		});
 	});
