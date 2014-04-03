@@ -21,7 +21,8 @@ app.post("/", function(req, res){
 
 	mongo.Db.connect(mongoUri, function (err, db) {
     	db.collection('mydocs', function(er, collection) {
-    		collection.insert({'mykey': 'myvalue'}, {safe: true}, function(er,rs) {
+    		//collection.insert({'mykey': 'myvalue'}, {safe: true}, function(er,rs) {
+    		collection.insert(req.body, {safe: true}, function(er,rs) {
 
     		});
   		});
