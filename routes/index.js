@@ -14,9 +14,10 @@ app.post("/", function(req, res){
 	//console.log('POST /');
 	//console.dir(req.body);
 	
-	var jsonObject = JSON.parse(req.body);
 	console.log('About to parse json');
-	console.log(jsonObject);
+	console.dir(req.body);
+	console.log('About to send back in response');
+	res.send(req.body);
 
 	mongo.Db.connect(mongoUri, function (err, db) {
     	db.collection('mydocs', function(er, collection) {
