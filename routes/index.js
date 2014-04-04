@@ -33,14 +33,14 @@ app.post("/", function(req, res){
     		if (err)
     			res.send(null);
 
-    		db.collection.ensureIndex( { location : "2dsphere" } 
+    		db.collection.ensureIndex( { location : "2dsphere" } );
 
     		collection.update({'Username':username}, {$set: geoJsonObj}, {upsert:true}, function(err,result) {
     			if (err)
     				res.send(null);
     			else
     				res.send(jsonObj);
-    		}));
+    		});
   		});
 	});
 
