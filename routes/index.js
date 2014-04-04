@@ -40,7 +40,8 @@ app.post("/", function(req, res){
     				res.send(null);
     			else
     				res.send(jsonObj);
-    		})});
+    		});
+    		});
   		});
 	});
 
