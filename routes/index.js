@@ -29,7 +29,7 @@ app.post("/", function(req, res){
 		if (err)
 			res.send(null);
 
-		db.ensureIndex(db, { location : "2dsphere" }, function (err, collection) {});
+		db.ensureIndex('catchmerequests', { location : "2dsphere" }, function (err, collection) {});
 		
     	db.collection('catchmerequests', function(err, collection) {
     		if (err)
