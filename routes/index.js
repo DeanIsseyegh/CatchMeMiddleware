@@ -19,6 +19,10 @@ app.post("/", function(req, res){
 	//console.log('About to send back in response');
 	var jsonObj = req.body; 
 	var username = jsonObj['Username'];
+	var longitude = jsonObj['longitude'];
+	var latitude = jsonObj['latitude'];
+	var geoJsonObj = {name: username, location: {"type" : "Point", "coordinates" : [longitude, latitude]}};
+
 	//res.send(req.body);
 
 	mongo.Db.connect(mongoUri, function (err, db) {
@@ -28,7 +32,8 @@ app.post("/", function(req, res){
     	db.collection('catchmerequests', function(err, collection) {
     		if (err)
     			res.send(null);
-    		collection.update({'Username':username}, {$set: jsonObj}, {upsert:true}, function(err,result) {
+
+    		collection.update({'Username':username}, {$set: geoJsonObj}, {upsert:true}, function(err,result) {
     			if (err)
     				res.send(null);
     			else
@@ -38,3 +43,5 @@ app.post("/", function(req, res){
 	});
 
 });
+
+//db.foo.insert({name: username, location: {"type" : "Point", "coordinates" : [longitude, latitude]}})
