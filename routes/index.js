@@ -21,7 +21,7 @@ app.post("/", function(req, res){
 	var username = jsonObj['Username'];
 	var longitude = jsonObj['longitude'];
 	var latitude = jsonObj['latitude'];
-	var geoJsonObj = {name: username, location: {"type" : "Point", "coordinates" : [longitude, latitude]}};
+	var geoJsonObj = {'Username': username, location: {"type" : "Point", "coordinates" : [longitude, latitude]}};
 
 	//res.send(req.body);
 
