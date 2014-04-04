@@ -28,19 +28,18 @@ app.post("/", function(req, res){
 	mongo.Db.connect(mongoUri, function (err, db) {
 		if (err)
 			res.send(null);
+
+		db.collection.ensureIndex( { location : "2dsphere" }, function (err, collection) {});
 		
     	db.collection('catchmerequests', function(err, collection) {
     		if (err)
     			res.send(null);
 
-    		db.collection.ensureIndex( { location : "2dsphere" }, function (err, collection) {
-    			console.log(err);
     		collection.update({'Username':username}, {$set: geoJsonObj}, {upsert:true}, function(err,result) {
     			if (err)
     				res.send(null);
     			else
     				res.send(jsonObj);
-    		});
     		});
   		});
 	});
