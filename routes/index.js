@@ -18,7 +18,7 @@ app.get('/', function(req, res){
                 }}, function(err, result){
                 	console.log('Ok, about to do stuff');
                 	console.dir(result);
-                	res.send(result);
+                	res.send(result.toArray());
                 });
   		});
 	});
