@@ -14,12 +14,12 @@ app.get('/', function(req, res){
     		collection.find( { location :
                    { $near : [ 51.0 , -0.1330 ] ,
                      $maxDistance : 10000000000000000000000
-                }}.toArray(function(err, docs){
+                }}).toArray(function(err, docs){
    						 console.log("retrieved records:");
    						 console.log(docs);
    						 res.send(docs);
 					});
-                });
+                
   		});
 	});
 
