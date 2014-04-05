@@ -16,7 +16,8 @@ app.get('/', function(req, res){
                    { $near : [ 51.50998001 , -0.13375500 ] //,
                      //$maxDistance : 10000000000000000000000
                 }}, function(err, result){
-                	console.dir(result)
+                	console.log('Ok, about to do stuff');
+                	console.dir(result);
                 	res.send(result);
                 });
   		});
