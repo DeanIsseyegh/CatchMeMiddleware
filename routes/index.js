@@ -14,9 +14,9 @@ app.get('/', function(req, res){
     			console("erro!");
     		collection.findOne( { location : { $near : [ 50.0 , -0.1330 ] ,
                      $maxDistance : 10000000000000000000000
-			}}, function(err, item){
-                	console.log(item.location);
-                	res.send(item);
+			}}, function(err, result){
+                	console.log(result);
+                	res.send(result);
                 });
                 
   		});
