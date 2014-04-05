@@ -15,6 +15,7 @@ app.get('/', function(req, res){
     		if (err)
     			res.send(null);
 
+    		db.ensureIndex('catchmerequests', { location : "2dsphere" }, function (err, collection) {});
     		collection.find( { location :
                    { $near : [ 51.50998001 , -0.13375500 ] //,
                      //$maxDistance : 10000000000000000000000
