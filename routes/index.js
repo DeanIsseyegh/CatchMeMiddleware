@@ -11,7 +11,7 @@ app.get('/', function(req, res){
 		
     	db.collection('catchmerequests', function(err, collection) {
 
-    		collection.find( { location :
+    		collection.find( { "location" :
                    { $near : [ 51.0 , -0.1330 ] ,
                      $maxDistance : 10000000000000000000000
                 }}).toArray(function(err, docs){
