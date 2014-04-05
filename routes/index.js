@@ -15,10 +15,10 @@ app.get('/', function(req, res){
     		if (err)
     			res.send(null);
 
-    		db.collection.find( { location :
+    		collection.find( { location :
                    { $near : [ 51.50998001 , .13375500 ] ,
                      $maxDistance : 10
-                } }, function(err, result){
+                }}, function(err, result){
                 	res.send(result);
                 });
   		});
