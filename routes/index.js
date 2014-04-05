@@ -12,11 +12,10 @@ app.get('/', function(req, res){
     	db.collection('catchmerequests', function(err, collection) {
     		if (err)
     			console("erro!");
-    		collection.findOne( { location :
-                   { $near : [ 50.0 , -0.1330 ] ,
+    		collection.findOne( { location : { $near : [ 50.0 , -0.1330 ] ,
                      $maxDistance : 10000000000000000000000
-                }}, function(err, item){
-                	console.log(item);
+			}}, function(err, item){
+                	console.log(item.location);
                 	res.send(item);
                 });
                 
