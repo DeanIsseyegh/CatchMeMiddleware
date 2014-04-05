@@ -17,8 +17,11 @@ app.get('/', function(req, res){
                      //$maxDistance : 10000000000000000000000
                 }}, function(err, result){
                 	console.log('Ok, about to do stuff');
-                	console.dir(result);
-                	res.send(result.toArray());
+                	result.toArray(function(err, docs){
+   						 console.log("retrieved records:");
+   						 console.log(docs);
+   						 res.send(docs);
+					});
                 });
   		});
 	});
