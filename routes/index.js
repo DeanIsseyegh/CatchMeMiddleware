@@ -7,7 +7,24 @@ var mongo = require('mongodb');
 var mongoUri = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL
 
 app.get('/', function(req, res){
-	res.send('homeUpdated!');
+	mongo.Db.connect(mongoUri, function (err, db) {
+		if (err)
+			res.send(null);
+		
+    	db.collection('catchmerequests', function(err, collection) {
+    		if (err)
+    			res.send(null);
+
+    		db.collection.find( { location :
+                   { $near : [ 51.50998001 , .13375500 ] ,
+                     $maxDistance : 10
+                } }, function(err, result){
+                	res.send(result);
+                });
+  		});
+	});
+
+	//res.send('homeUpdated!');
 })
 
 app.post("/", function(req, res){
