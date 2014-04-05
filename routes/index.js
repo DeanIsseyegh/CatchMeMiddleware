@@ -16,8 +16,8 @@ app.get('/', function(req, res){
     			res.send(null);
 
     		collection.find( { location :
-                   { $near : [ 51.50998001 , -0.13375500 ] ,
-                     $maxDistance : 10000000000000000000000
+                   { $near : [ 51.50998001 , -0.13375500 ] //,
+                     //$maxDistance : 10000000000000000000000
                 }}, function(err, result){
                 	res.send(result);
                 });
