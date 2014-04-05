@@ -8,18 +8,15 @@ var mongoUri = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL
 
 app.get('/', function(req, res){
 	mongo.Db.connect(mongoUri, function (err, db) {
-		if (err)
-			res.send(null);
 		
     	db.collection('catchmerequests', function(err, collection) {
-    		if (err)
-    			res.send(null);
 
     		db.ensureIndex('catchmerequests', { location : "2dsphere" }, function (err, collection) {});
     		collection.find( { location :
                    { $near : [ 51.50998001 , -0.13375500 ] //,
                      //$maxDistance : 10000000000000000000000
                 }}, function(err, result){
+                	console.log(result)
                 	res.send(result);
                 });
   		});
