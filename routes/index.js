@@ -10,8 +10,9 @@ app.get('/', function(req, res){
 	mongo.Db.connect(mongoUri, function (err, db) {
 		
     	db.collection('catchmerequests', function(err, collection) {
-
-    		collection.findOne( { "location" :
+    		if (err)
+    			console("erro!");
+    		collection.findOne( { location :
                    { $near : [ 50.0 , -0.1330 ] ,
                      $maxDistance : 10000000000000000000000
                 }}, function(err, item){
