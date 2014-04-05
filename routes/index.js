@@ -13,8 +13,8 @@ app.get('/', function(req, res){
 
     		db.ensureIndex('catchmerequests', { location : "2dsphere" }, function (err, collection) {});
     		collection.find( { location :
-                   { $near : [ 51.50998001 , -0.13375500 ] //,
-                     //$maxDistance : 10000000000000000000000
+                   { $near : [ 51.50998001 , -0.13375500 ] ,
+                     $maxDistance : 10000000000000000000000
                 }}, function(err, result){
                 	console.log('Ok, about to do stuff');
                 	result.toArray(function(err, docs){
