@@ -47,12 +47,12 @@ app.post("/", function(req, res){
 		if (err)
 			res.send(null);
 
-		db.ensureIndex('catchmerequests', { location : "2dsphere" }, function (err, collection) {});
+		//db.ensureIndex('catchmerequests', { location : "2dsphere" }, function (err, collection) {});
 		
     	db.collection('catchmerequests', function(err, collection) {
     		if (err)
     			res.send(null);
-
+    		db.ensureIndex('catchmerequests', { location : "2dsphere" }, function (err, collection) {});
     		collection.update({'Username':username}, {$set: geoJsonObj}, {upsert:true}, function(err,result) {
     			if (err)
     				res.send(null);
