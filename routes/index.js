@@ -13,7 +13,7 @@ app.get('/', function(req, res){
     		if (err)
     			console("erro!");
     		db.command( { geoNear : 'catchmerequests', near: { type: 'Point', 
-			coordinates : [50, 50] }, spherical : true, maxDistance : 5000000 }, 
+			coordinates : [50, 50] }, spherical : true, maxDistance : 5000000000 }, 
 			function(err, result){
                 	console.log(result);
                 	res.send(result);
