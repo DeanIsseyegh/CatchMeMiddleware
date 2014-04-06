@@ -21,7 +21,7 @@ app.get('/', function(req, res){
                 
   		});
 	});
-})
+});
 
 /**db.catchmerequests.find({"location":{$near:{$geometry:
     {type:"Point", coordinates:[50.0 , -0.1330]}, $maxDistance:500}}})
@@ -75,7 +75,7 @@ app.get('/findrequests', function(req, res){
     		if (err)
     			console("erro!");
     		db.command( { geoNear : 'catchmerequests', near: { type: 'Point', 
-			coordinates : [50, 50] }, spherical : true, maxDistance : 5000000000 }, 
+			coordinates : [50, 50] }, spherical : true, maxDistance : 500000}, 
 			function(err, result){
                 	console.log(result);
                 	res.send(result);
@@ -83,4 +83,4 @@ app.get('/findrequests', function(req, res){
                 
   		});
 	});
-})
+});
