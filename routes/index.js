@@ -12,19 +12,23 @@ app.get('/', function(req, res){
     	db.collection('catchmerequests', function(err, collection) {
     		if (err)
     			console("erro!");
-    		collection.findOne( { location : { $near : [ 50.0 , -0.1330 ] ,
-                     $maxDistance : 10000000000000000000000
-			}}, function(err, result){
+    		db.runCommand( { geoNear : 'catchmerequests', near: { type: 'Point', 
+			coordinates : [50, 50] }, spherical : true, maxDistance : 5000000 }, 
+			function(err, result){
                 	console.log(result);
                 	res.send(result);
                 });
                 
   		});
 	});
-
-	//res.send('homeUpdated!');
 })
 
+/**db.catchmerequests.find({"location":{$near:{$geometry:
+    {type:"Point", coordinates:[50.0 , -0.1330]}, $maxDistance:500}}})
+
+db.runCommand( { geoNear : 'catchmerequests', near: { type: 'Point', 
+coordinates : [50, 50] }, spherical : true, maxDistance : 5000000 } );
+*/
 app.post("/", function(req, res){
 	//console.log('POST /');
 	//console.dir(req.body);
