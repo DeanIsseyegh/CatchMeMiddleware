@@ -68,7 +68,7 @@ app.post("/", function(req, res){
 /////////////////////////////////////////////
 /////////////////////////////////////////////
 
-/**exports.findrequests = function(req, res){
+app.get('/findrequests', function(req, res){
 	mongo.Db.connect(mongoUri, function (err, db) {
 		
     	db.collection('catchmerequests', function(err, collection) {
@@ -83,4 +83,4 @@ app.post("/", function(req, res){
                 
   		});
 	});
-}; */
+})
