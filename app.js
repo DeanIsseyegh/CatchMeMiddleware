@@ -6,7 +6,7 @@
 var express = require('express');
 var http = require('http');
 var path = require('path');
-require("./routes");
+var routes = require("./routes");
 var app = module.exports = express();
 
 // all environments
@@ -21,6 +21,7 @@ app.use(express.methodOverride());
 app.use(app.router);
 app.use(require('less-middleware')({ src: path.join(__dirname, 'public') }));
 app.use(express.static(path.join(__dirname, 'public')));
+app.get('/findrequests', routes.findrequests);
 
 // development only
 if ('development' == app.get('env')) {
