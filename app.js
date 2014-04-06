@@ -6,7 +6,7 @@
 var express = require('express');
 var http = require('http');
 var path = require('path');
-
+var routes = require("./routes");
 var app = module.exports = express();
 
 // all environments
@@ -21,16 +21,13 @@ app.use(express.methodOverride());
 app.use(app.router);
 app.use(require('less-middleware')({ src: path.join(__dirname, 'public') }));
 app.use(express.static(path.join(__dirname, 'public')));
+app.get('/findrequests', routes.findrequests);
+app.post('/findrequests', routes.findrequests);
 
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
-
-var routes = require("./routes");
-
-app.get('/findrequests', routes.findrequests);
-app.post('/findrequests', routes.findrequests);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
