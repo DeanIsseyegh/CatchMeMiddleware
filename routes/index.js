@@ -68,20 +68,3 @@ app.post("/", function(req, res){
 /////////////////////////////////////////////
 /////////////////////////////////////////////
 
-
-app.get('/findrequests', function(req, res){
-	mongo.Db.connect(mongoUri, function (err, db) {
-		
-    	db.collection('catchmerequests', function(err, collection) {
-    		if (err)
-    			console("erro!");
-    		db.command( { geoNear : 'catchmerequests', near: { type: 'Point', 
-			coordinates : [50, 50] }, spherical : true, maxDistance : 5000000000 }, 
-			function(err, result){
-                	console.log(result);
-                	res.send(result);
-                });
-                
-  		});
-	});
-})
