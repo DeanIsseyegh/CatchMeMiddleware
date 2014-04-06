@@ -12,7 +12,7 @@ app.get('/', function(req, res){
     	db.collection('catchmerequests', function(err, collection) {
     		if (err)
     			console("erro!");
-    		db.runCommand( { geoNear : 'catchmerequests', near: { type: 'Point', 
+    		db.command( { geoNear : 'catchmerequests', near: { type: 'Point', 
 			coordinates : [50, 50] }, spherical : true, maxDistance : 5000000 }, 
 			function(err, result){
                 	console.log(result);
