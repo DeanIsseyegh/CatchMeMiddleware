@@ -5,15 +5,15 @@ var mongoUri = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL //get environ
 /////////////////////////////////////////////
 ///////		Response Json Objects   /////////
 /////////////////////////////////////////////
-var success = {"res" : 0}
-var errConnectToDB = {"res" : 1};
-var errCollection = {"res" : 2};
-var errEnsureIndex = {"res" : 3};
-var errUpdate = {"res" : 4};
-var errCommand = {"res" : 5};
-var errFindOne = {"res" : 6};
-var errInsert = {"res" : 7};
-var errUsernameAlreadyTaken = {"res" : 8};
+var success = {'res' : 0}
+var errConnectToDB = {'res' : 1};
+var errCollection = {'res' : 2};
+var errEnsureIndex = {'res' : 3};
+var errUpdate = {'res' : 4};
+var errCommand = {'res' : 5};
+var errFindOne = {'res' : 6};
+var errInsert = {'res' : 7};
+var errUsernameAlreadyTaken = {'res' : 8};
 
 /////////////////////////////////////////////
 ///////		Insert/update location  /////////
@@ -83,7 +83,7 @@ app.post("/register", function(req, res){
     	db.collection('registeredusers', function(err, collection) {
     		if (err)
     			res.send(errCollection);
-    		collection.ensureIndex({ 'Username' }, {unique: true}, function (err, collection) {});
+    		collection.ensureIndex('Username', {unique: true}, function (err, collection) {});
     		collection.findOne({'Username':username}, function(err, document) {
     			if (err)
     				res.send(errFindOne);
