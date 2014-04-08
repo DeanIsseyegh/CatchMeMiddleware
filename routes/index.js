@@ -39,6 +39,8 @@ app.post("/", function(req, res){
     		collection.update({'Username':username}, {$set: geoJsonObj}, {upsert:true}, function(err,result) {
     			if (err)
     				res.send(errUpdate);
+   				else
+   					res.send(success);
     		}); // end of collection.update
   		}); // end of db.collection
 	});	// end of mongo.Db.connect
@@ -61,9 +63,11 @@ app.post('/findrequests', function(req, res){
 			function(err, result){
 				if (err)
 					res.send(errCommand);
-
+				else 
+				{
                 	console.log(result);
                 	res.send(success);
+                }
             }); // end of db.command geoNear
   		}); //end of db.collection
 	}); // end of mongo.Db.connect
@@ -95,8 +99,8 @@ app.post("/register", function(req, res){
     			collection.insert(jsonObj, function(err,result) {
     				if (err)
     					res.send(errInsert);
-
-    				res.send(success)
+    				else
+    					res.send(success)
     			}); // end of collection.update
     			} // end of if !document
     		}); // end of collection.findOne
