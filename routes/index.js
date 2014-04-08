@@ -34,7 +34,7 @@ app.post("/", function(req, res){
     		if (err)
     			res.send(errCollection);
     		console.log("About to ensureIndex");
-    		collection.ensureIndex('catchmerequests', { location : "2dsphere" }, function (err, collection) {});
+    		collection.ensureIndex({ location : "2dsphere" }, function (err, collection) {});
     		console.log("About to update");
     		collection.update({'Username':username}, {$set: geoJsonObj}, {upsert:true}, function(err,result) {
     			if (err)
