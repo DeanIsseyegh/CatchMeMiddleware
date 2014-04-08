@@ -25,17 +25,13 @@ app.post("/", function(req, res){
 	var longitude = jsonObj['longitude'];
 	var latitude = jsonObj['latitude'];
 	var geoJsonObj = {'Username': username, location: {"type" : "Point", "coordinates" : [longitude, latitude]}};
-	console.log("about to connecttodb");
 	mongo.Db.connect(mongoUri, function (err, db) {
 		if (err)
 			res.send(errConnectToDB);
-		console.log("About to get to collection");
     	db.collection('catchmerequests', function(err, collection) {
     		if (err)
     			res.send(errCollection);
-    		console.log("About to ensureIndex");
     		collection.ensureIndex({ location : "2dsphere" }, function (err, collection) {});
-    		console.log("About to update");
     		collection.update({'Username':username}, {$set: geoJsonObj}, {upsert:true}, function(err,result) {
     			if (err)
     				res.send(errUpdate);
@@ -103,6 +99,7 @@ app.post("/register", function(req, res){
     					res.send(success)
     			}); // end of collection.update
     			} // end of if !document
+    			else { res.send(errUsernameAlreadyTaken) }; // Means that findOne returned document, user already exists
     		}); // end of collection.findOne
   		}); // end of db.collection
 	});	// end of mongo.Db.connect
