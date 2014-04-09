@@ -14,6 +14,7 @@ var errCommand = {'res' : 5};
 var errFindOne = {'res' : 6};
 var errInsert = {'res' : 7};
 var errUsernameAlreadyTaken = {'res' : 8};
+var errUsernameAndPassDontMatch = {'res' : 9};
 
 /////////////////////////////////////////////
 ///////		Insert/update location  /////////
@@ -97,9 +98,38 @@ app.post("/register", function(req, res){
     					res.send(errInsert);
     				else
     					res.send(success)
-    			}); // end of collection.update
+    			}); // end of collection.insert
     			} // end of if !document
     			else { res.send(errUsernameAlreadyTaken) }; // Means that findOne returned document, user already exists
+    		}); // end of collection.findOne
+  		}); // end of db.collection
+	});	// end of mongo.Db.connect
+}); // end of app.post
+
+/////////////////////////////////////////////
+///////	  Authenticate/Login User   /////////
+/////////////////////////////////////////////
+
+app.post("/login", function(req, res){
+	var jsonObj = req.body; 
+	var username = jsonObj['Username'];
+	var password = jsonObj['Password'];
+
+	mongo.Db.connect(mongoUri, function (err, db) {
+		if (err)
+			res.send(errConnectToDB);
+    	db.collection('registeredusers', function(err, collection) {
+    		if (err)
+    			res.send(errCollection);
+    		collection.ensureIndex('Username', {unique: true}, function (err, collection) {});
+    		collection.findOne({'Username':username, 'Password':password}, function(err, document) {
+    			if (err)
+    				res.send(errFindOne);
+
+    			if (document){
+    				res.send(success)
+    			} // end of if document
+    			else { res.send(errUsernameAndPassDontMatch) };
     		}); // end of collection.findOne
   		}); // end of db.collection
 	});	// end of mongo.Db.connect
