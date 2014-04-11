@@ -54,7 +54,6 @@ app.post('/findrequests', function(req, res){
 	var longitude = jsonObj['longitude'];
 	var latitude = jsonObj['latitude'];
 	var searchDistance = 5000; //In meters
-	console.log('Hitting findrequests at least...');
 	mongo.Db.connect(mongoUri, function (err, db) {
 		
     	db.collection('catchmerequests', function(err, collection) {
@@ -67,7 +66,7 @@ app.post('/findrequests', function(req, res){
 				if (err)
 					res.send(errCommand);
 		
-                	console.log(result);
+                	console.log(result.toString());
                 	if (result)
                 	{
                 		res.send(success);
