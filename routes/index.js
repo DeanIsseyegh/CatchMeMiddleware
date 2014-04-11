@@ -50,6 +50,7 @@ app.post("/", function(req, res){
 /////////////////////////////////////////////
 
 app.post('/findrequests', function(req, res){
+	var jsonObj = req.body; 
 	var longitude = jsonObj['longitude'];
 	var latitude = jsonObj['latitude'];
 	var searchDistance = 5000; //In meters
