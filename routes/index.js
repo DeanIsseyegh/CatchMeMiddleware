@@ -66,10 +66,9 @@ app.post('/findrequests', function(req, res){
 				if (err)
 					res.send(errCommand);
 		
-                	console.log(result);
                 	if (result)
                 	{
-                		res.send(result);
+                		res.send(result + success);
                 	}
                 	else
                 		res.send(errNoOneNearby);
