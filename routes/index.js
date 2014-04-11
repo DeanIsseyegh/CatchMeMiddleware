@@ -64,14 +64,16 @@ app.post('/findrequests', function(req, res){
 			function(err, result){
 				if (err)
 					res.send(errCommand);
-				else 
-				{
+		
                 	console.log(result);
                 	if (result)
+                	{
+                		var arra = result.toArray();
+                		console.log()
                 		res.send(success);
+                	}
                 	else
                 		res.send(errNoOneNearby);
-                }
             }); // end of db.command geoNear
   		}); //end of db.collection
 	}); // end of mongo.Db.connect
