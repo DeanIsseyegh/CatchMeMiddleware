@@ -5,7 +5,7 @@ var mongoUri = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL //get environ
 /////////////////////////////////////////////
 ///////		Response Json Objects   /////////
 /////////////////////////////////////////////
-var success = {'res' : 0}
+var success = {'res' : 100}
 var errConnectToDB = {'res' : 1};
 var errCollection = {'res' : 2};
 var errEnsureIndex = {'res' : 3};
