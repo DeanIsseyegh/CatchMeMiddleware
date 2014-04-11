@@ -15,6 +15,7 @@ var errFindOne = {'res' : 6};
 var errInsert = {'res' : 7};
 var errUsernameAlreadyTaken = {'res' : 8};
 var errUsernameAndPassDontMatch = {'res' : 9};
+var errNoOneNearby = {'res' : 10};
 
 /////////////////////////////////////////////
 ///////		Insert/update location  /////////
@@ -49,6 +50,9 @@ app.post("/", function(req, res){
 /////////////////////////////////////////////
 
 app.post('/findrequests', function(req, res){
+	var longitude = jsonObj['longitude'];
+	var latitude = jsonObj['latitude'];
+	var searchDistance = 5000; //In meters
 	mongo.Db.connect(mongoUri, function (err, db) {
 		
     	db.collection('catchmerequests', function(err, collection) {
@@ -56,14 +60,17 @@ app.post('/findrequests', function(req, res){
     			res.send(errCollection);
 
     		db.command( { geoNear : 'catchmerequests', near: { type: 'Point', 
-			coordinates : [50, 50] }, spherical : true, maxDistance : 500000}, 
+			coordinates : [longitude, latitude] }, spherical : true, maxDistance : searchDistance}, 
 			function(err, result){
 				if (err)
 					res.send(errCommand);
 				else 
 				{
                 	console.log(result);
-                	res.send(success);
+                	if (result)
+                		res.send(success);
+                	else
+                		res.send(errNoOneNearby);
                 }
             }); // end of db.command geoNear
   		}); //end of db.collection
