@@ -69,8 +69,8 @@ app.post('/findrequests', function(req, res){
                 	console.log(result);
                 	if (result)
                 	{
-                		//var arra = result.toArray();
-                		console.log()
+                		var arra = result.toArray();
+                		console.log(arra)
                 		res.send(success);
                 	}
                 	else
