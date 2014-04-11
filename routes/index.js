@@ -66,7 +66,7 @@ app.post('/findrequests', function(req, res){
 				if (err)
 					res.send(errCommand);
 		
-                	console.log(result.toString());
+                	console.log(result[0]);
                 	if (result)
                 	{
                 		res.send(success);
